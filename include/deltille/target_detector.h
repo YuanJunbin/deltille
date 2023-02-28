@@ -15,6 +15,7 @@
 * License along with this library; if not, write to the Free Software
 * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
+#define OPENCV_TRAITS_ENABLE_DEPRECATED
 
 #pragma once
 #ifndef DELTILLE_APPS_TARGET_DETECTOR_H

@@ -217,6 +217,7 @@ void readBoardDefinitions(std::istream &in, std::vector<BoardDefinition> &defs,
     int board, tagid, lx, ly;
     double x, y, z;
     char c;
+    // State=0 ; reading board metadata.
     if (state == 0) {
       iss.str(line);
       iss.clear();
@@ -224,6 +225,7 @@ void readBoardDefinitions(std::istream &in, std::vector<BoardDefinition> &defs,
         printf("Error reading file, line >%s<\n", line.c_str());
         break;
       } else {
+        std::cout << "Board=" << board << "lx=" << lx << "ly=" << ly << "x=" << x << std::endl;
         BoardDefinition b;
         b.id = board;
         b.target_id = target_id;
@@ -268,7 +270,10 @@ void readBoardDefinitions(std::istream &in, std::vector<BoardDefinition> &defs,
 #endif
         state = 1;
       }
-    } else if (state == 1) {
+    } 
+
+    // State=1 ; reading board metadata.
+    else if (state == 1) {
       if (!(iss >> tagid >> c >> lx >> c >> ly >> c >> x >> c >> y >> c >> z)) {
         printf("Error reading file, line >%s<\n", line.c_str());
         break;
@@ -1010,10 +1015,10 @@ bool TaggedBoardIndexer::detectDeltaTag(const cv::Mat &img,
 #ifdef DEBUG_REINDEXING
       cv::line(dbg, cv::Point(p[0].x * 65536, p[0].y * 65536),
                cv::Point(p[1].x * 65536, p[1].y * 65536), cv::Scalar(0, 0, 255),
-               2, CV_AA, 16);
+               2, cv::LINE_AA, 16);
       cv::line(dbg, cv::Point(p[0].x * 65536, p[0].y * 65536),
                cv::Point(p[2].x * 65536, p[2].y * 65536), cv::Scalar(0, 255, 0),
-               2, CV_AA, 16);
+               2, cv::LINE_AA, 16);
 #endif
     } else {
       // unknown tag... ignore it...

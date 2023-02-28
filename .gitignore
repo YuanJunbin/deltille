@@ -1,5 +1,7 @@
 # Created by https://www.gitignore.io/api/vim,c++,linux,macos,cmake,matlab,python,windows
 
+experiments
+
 ### C++ ###
 # Prerequisites
 *.d

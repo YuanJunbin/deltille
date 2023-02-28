@@ -30,6 +30,7 @@
 #include <iostream>
 #include <map>
 #include <memory>
+#include <numeric>
 
 namespace orp {
 namespace calibration {
