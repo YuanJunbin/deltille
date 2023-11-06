@@ -50,8 +50,7 @@ bool writeCornersToFile(std::ostream &os,
     }
   }
 
-  cout << "writing " << num_corners << "\n";
-
+  cout << "deltille: writing " << num_corners << "corners \n";
   os << "filename: " << filename << endl;
   os << "width: " << image_size.width << endl;
   os << "height: " << image_size.height << endl;
@@ -60,8 +59,10 @@ bool writeCornersToFile(std::ostream &os,
 
   auto p = os.precision();
   os.precision(numeric_limits<double>::max_digits10);
-  for (auto &c : corners) {
-    if (!c.isValid() || (write_ordered_only && !c.isOrdered)) {
+  for (auto &c : corners) 
+  {
+    if (!c.isValid() || (write_ordered_only && !c.isOrdered)) 
+    {
       continue;
     }
 
