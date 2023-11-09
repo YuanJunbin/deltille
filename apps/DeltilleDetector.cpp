@@ -37,7 +37,8 @@ using namespace std;
 
 /**
  */
-bool writeCornersToFile(std::ostream &os,
+bool writeCornersToFile(int frame_idx,
+                        std::ostream &os,
                         const std::vector<CalibrationCorner> &corners,
                         string filename, const cv::Size &image_size,
                         bool write_ordered_only = true) {
@@ -50,7 +51,9 @@ bool writeCornersToFile(std::ostream &os,
     }
   }
 
-  cout << "deltille: writing " << num_corners << "corners \n";
+  cout << "deltille: writing " << num_corners << " corners \n";
+  // cout << "file name is " << filename << "\n";
+  // cout << "frame idx is " << frame_idx << "\n";
   os << "filename: " << filename << endl;
   os << "width: " << image_size.width << endl;
   os << "height: " << image_size.height << endl;
@@ -66,7 +69,7 @@ bool writeCornersToFile(std::ostream &os,
       continue;
     }
 
-    os << c << endl;
+    os << frame_idx << "," << c << endl;
   }
 
   os.precision(p);
@@ -181,7 +184,7 @@ void RunDetector(DataSource *data_source, string target_dsc_fn,
  
         std::ofstream file(output_filename.string());
         if (file.is_open()) {
-          writeCornersToFile(file, corners, filename, I.size(), true);
+          writeCornersToFile(i, file, corners, filename, I.size(), true);
         } else {
           cerr << "Failed to open: " << output_filename << " for writing"
                << endl;

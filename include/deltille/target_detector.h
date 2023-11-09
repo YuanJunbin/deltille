@@ -60,7 +60,9 @@ private:
 
   friend std::ostream &operator<<(std::ostream &os,
                                   const CalibrationCorner &c) {
-    os << c.boardId << "," << c.pointId << "," << c.isOrdered << "," << c.x
+    // os << c.boardId << "," << c.pointId << "," << c.isOrdered << "," << c.x
+    //    << "," << c.y;
+    os << c.pointId << "," << c.isOrdered << "," << c.x
        << "," << c.y;
     return os;
   }
